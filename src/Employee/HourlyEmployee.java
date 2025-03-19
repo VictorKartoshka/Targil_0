@@ -1,3 +1,5 @@
+package Employee;
+
 /**
  * Class representing an employee paid by hour
  */
@@ -66,6 +68,9 @@ public class HourlyEmployee extends Employee {
         if (wage < 0) {
             throw new IllegalArgumentException("Wage cannot be negative");
         }
+        if (Math.round(wage * 100) / 100.0f != wage) {
+            throw new IllegalArgumentException("Wage cannot have more than 2 decimal places");
+        }
         this.wage = wage;
     }
 
@@ -86,10 +91,9 @@ public class HourlyEmployee extends Employee {
      */
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) return true;
         if (!super.equals(obj)) return false;
-        if (!(obj instanceof HourlyEmployee)) return false;
-
-        HourlyEmployee other = (HourlyEmployee) obj;
+        if (!(obj instanceof HourlyEmployee other)) return false;
 
         return hours == other.hours && Float.compare(wage, other.wage) == 0;
     }
@@ -103,7 +107,3 @@ public class HourlyEmployee extends Employee {
         return hours * wage;
     }
 }
-
-/**
- * Class representing an employee paid by commission
- */

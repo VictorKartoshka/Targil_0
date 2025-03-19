@@ -1,3 +1,8 @@
+import Employee.Employee;
+import Employee.HourlyEmployee;
+import Employee.CommissionEmployee;
+import Employee.BasePlusCommissionEmployee;
+
 /**
  * Class to test the employee hierarchy
  */
@@ -7,7 +12,7 @@ public class Payroll {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        // Create an array of Employee objects
+        // Create an array of Employee.Employee objects
         Employee[] employees = new Employee[3];
 
         // Initialize employees with realistic values
@@ -19,7 +24,7 @@ public class Payroll {
         for (int i = 0; i < employees.length; i++) {
             System.out.println(employees[i]);
 
-            // Add 10% bonus to base salary if the employee is a BasePlusCommissionEmployee
+            // Add 10% bonus to base salary if the employee is a Employee.BasePlusCommissionEmployee
             if (employees[i] instanceof BasePlusCommissionEmployee) {
                 BasePlusCommissionEmployee employee = (BasePlusCommissionEmployee) employees[i];
                 float currentBaseSalary = employee.getBaseSalary();

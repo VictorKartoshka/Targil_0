@@ -1,5 +1,10 @@
+package Employee;
+
+/**
+ * Class representing an employee paid by commission
+ */
 public class CommissionEmployee extends Employee {
-    private float grossSales;
+    private float setBaseSalary;
     private int commission;
 
     /**
@@ -21,7 +26,7 @@ public class CommissionEmployee extends Employee {
      */
     public CommissionEmployee() {
         super();
-        this.grossSales = 0;
+        this.setBaseSalary = 0;
         this.commission = 0;
     }
 
@@ -30,7 +35,7 @@ public class CommissionEmployee extends Employee {
      * @return the gross sales
      */
     public float getGrossSales() {
-        return grossSales;
+        return setBaseSalary;
     }
 
     /**
@@ -42,7 +47,10 @@ public class CommissionEmployee extends Employee {
         if (grossSales < 0) {
             throw new IllegalArgumentException("Gross sales cannot be negative");
         }
-        this.grossSales = grossSales;
+        if (Math.round(grossSales * 100) / 100.0f != grossSales) {
+            throw new IllegalArgumentException("Wage cannot have more than 2 decimal places");
+        }
+        this.setBaseSalary = grossSales;
     }
 
     /**
@@ -71,7 +79,7 @@ public class CommissionEmployee extends Employee {
      */
     @Override
     public String toString() {
-        return super.toString() + ", Gross Sales: " + String.format("%.2f", grossSales) +
+        return super.toString() + ", Gross Sales: " + String.format("%.2f", setBaseSalary) +
                 ", Commission: " + commission + "%, Weekly Earnings: " + String.format("%.2f", earnings());
     }
 
@@ -83,11 +91,9 @@ public class CommissionEmployee extends Employee {
     @Override
     public boolean equals(Object obj) {
         if (!super.equals(obj)) return false;
-        if (!(obj instanceof CommissionEmployee)) return false;
+        if (!(obj instanceof CommissionEmployee other)) return false;
 
-        CommissionEmployee other = (CommissionEmployee) obj;
-
-        return Float.compare(grossSales, other.grossSales) == 0 && commission == other.commission;
+        return Float.compare(setBaseSalary, other.setBaseSalary) == 0 && commission == other.commission;
     }
 
     /**
@@ -96,10 +102,6 @@ public class CommissionEmployee extends Employee {
      */
     @Override
     public float earnings() {
-        return (commission / 100.0f) * grossSales;
+        return (commission / 100.0f) * setBaseSalary;
     }
 }
-
-/**
- * Class representing an employee paid by base salary plus commission
- */

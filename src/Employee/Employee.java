@@ -1,3 +1,5 @@
+package Employee;
+
 /**
  * Abstract class representing an employee
  */
@@ -81,7 +83,7 @@ public abstract class Employee {
      */
     @Override
     public String toString() {
-        return "Employee: " + firstName + " " + lastName + ", ID: " + id;
+        return "Employee.Employee: " + firstName + " " + lastName + ", ID: " + id;
     }
 
     /**
