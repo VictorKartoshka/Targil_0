@@ -1,3 +1,9 @@
+package Employee;
+
+
+/**
+ * Class representing an employee paid by base salary plus commission
+ */
 public class BasePlusCommissionEmployee extends CommissionEmployee {
     private float baseSalary;
 
@@ -41,6 +47,9 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
         if (baseSalary < 0) {
             throw new IllegalArgumentException("Base salary cannot be negative");
         }
+        if (Math.round(baseSalary * 100) / 100.0f != baseSalary) {
+            throw new IllegalArgumentException("Base salary cannot have more than 2 decimal places");
+        }
         this.baseSalary = baseSalary;
     }
 
@@ -63,9 +72,7 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
     @Override
     public boolean equals(Object obj) {
         if (!super.equals(obj)) return false;
-        if (!(obj instanceof BasePlusCommissionEmployee)) return false;
-
-        BasePlusCommissionEmployee other = (BasePlusCommissionEmployee) obj;
+        if (!(obj instanceof BasePlusCommissionEmployee other)) return false;
 
         return Float.compare(baseSalary, other.baseSalary) == 0;
     }

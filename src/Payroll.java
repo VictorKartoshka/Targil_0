@@ -25,8 +25,7 @@ public class Payroll {
             System.out.println(employees[i]);
 
             // Add 10% bonus to base salary if the employee is a Employee.BasePlusCommissionEmployee
-            if (employees[i] instanceof BasePlusCommissionEmployee) {
-                BasePlusCommissionEmployee employee = (BasePlusCommissionEmployee) employees[i];
+            if (employees[i] instanceof BasePlusCommissionEmployee employee) {
                 float currentBaseSalary = employee.getBaseSalary();
                 employee.setBaseSalary(currentBaseSalary * 1.1f);
                 System.out.println("After 10% bonus: " + employee);
